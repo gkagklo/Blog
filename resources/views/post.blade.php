@@ -170,28 +170,28 @@
 		</div><!-- container -->
 	</section>
 
+	
 	<section class="comment-section">
 		<div class="container">
+			@if(!empty(Auth::check() ))	
 			<h4><b>POST COMMENT</b></h4>
 			<div class="row">
-
 				<div class="col-lg-8 col-md-12">
 					<div class="comment-form">
-					<form method="post" action="{{ route('comment.store',$post->id) }}">
-							{{ csrf_field() }}
-							<div class="row">
-
-								<div class="col-sm-12">
-									<textarea name="comment" rows="2" class="text-area-messge form-control"
-										placeholder="Enter your comment" aria-required="true" aria-invalid="false"></textarea >
-								</div><!-- col-sm-12 -->
-								<div class="col-sm-12">
-									<button class="submit-btn" type="submit" id="form-submit"><b>POST COMMENT</b></button>
-								</div><!-- col-sm-12 -->
-
-							</div><!-- row -->
-						</form>
+						<form method="post" action="{{ route('comment.store',$post->id) }}">
+								{{ csrf_field() }}
+								<div class="row">
+									<div class="col-sm-12">
+										<textarea name="comment" rows="2" class="text-area-messge form-control"
+											placeholder="Enter your comment" aria-required="true" aria-invalid="false"></textarea >
+									</div><!-- col-sm-12 -->
+									<div class="col-sm-12">
+										<button class="submit-btn" type="submit" id="form-submit"><b>POST COMMENT</b></button>
+									</div><!-- col-sm-12 -->				
+								</div><!-- row -->
+							</form>	
 					</div><!-- comment-form -->
+					@endif
 
 					<h4><b>COMMENTS ({{$post->comments->count()}})</b></h4>
 
@@ -210,7 +210,7 @@
 								</div>
 							</div><!-- post-info -->
 						<p> {{ $comment->comment }} </p>
-						</div>
+						</div>	
 					</div>
 					@endforeach
 
@@ -229,11 +229,10 @@
 
 		</div><!-- container -->
 	</section>
-
+	
 
 @endsection
 
 @push('js')
-
 
 @endpush
